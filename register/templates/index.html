@@ -12,63 +12,76 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <script type="text/javascript" src="{%  static 'js/jquery-1.12.4.min.js' %}"></script>
-<script type="text/javascript" src="{%  static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{%  static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+         });
+    </script>
     <title> my workspace </title>
 </head>
-<body  style="background-image: url({% static "media/image/123.jpg" %});background-repeat:no-repeat;background-size:100%;height: 140px;display:block;padding:0 !important;margin:0;" >
+<body   style="background-image: url({% static "media/image/123.jpg" %});background-repeat:no-repeat;background-size:100%;height: 140px;display:block;padding:0!important;margin:0;" >
 <div class="page-header">
-    <h1><center> <span style="color:black" ><font size="12"><img data-src="567.png/200x200" class="img-thumbnail" alt="">
-<b>RAW</b>cat</font></span></center></h1>
+    <h1><center> <span style="color:black" ><font size="12">
+    <b>RAW</b>cat</font></span></center></h1>
 </div>
 <center
 >
-<h1>
-    <span class="label label-default">bootstrap</span>
-    <span class="label label-primary">getting started</span>
-    <span class="label label-success">css</span>
-    <span class="label label-info">javascript</span>
-    <span class="label label-warning">c#/c++</span>
-    <span class="label label-danger">pyhton</span>
-</h1>
+    <h1>
+        <span class="label label-default">bootstrap</span>
+        <span class="label label-primary">getting started</span>
+        <span class="label label-success">css</span>
+        <span class="label label-info">javascript</span>
+        <span class="label label-warning">c#/c++</span>
+        <span class="label label-danger">pyhton</span>
+    </h1>
 </center>
-   <nav class="navbar navbar-inverse">
-        <div class="container">
-          <div class="navbar-header">
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Project</a>
-          </div>
-          <div class="navbar-collapse collapse">
+        </div>
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><font size="3"><span style="color:rgb(255, 127, 0)" >log<b> IN</b></span></font><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="{% url  'register_user' %}">Sign up</a></li>
-                  <li><a href="{% url 'login' %}">Sign in</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><font size="3"><span style="color:rgb(255, 127, 0)" >log<b> IN</b></span></font><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    {% if user.is_anonymous %}
+                        <li><a href="{% url  'register_user' %}">Sign up</a></li>
+                        <li><a href="{% url 'login' %}">Sign in</a></li>
+                           {% else %}
+                    <li>
+                         <div class="btn-group">
+                             <li><a href="{% url 'logout' %}">Signout</a></li>
+                             <a class="btn-new btn-nav btn-white" data-toggle="dropdown"></a><i class="fa fa-user fa-fw"></i>
+                                 {% if request.user.user_first_name %}
+                                 {{ request.user.user_first_name }}
+                                 {% elif request.user.username %}
+                                 {{ request.user.username }}
+                                 {% else %}
+                                 {{ request.user.email }}
+                                 {% endif %}
+                                 {% endif %}
 
-                </ul>
-              </li>
 
 
-
-
-
-
-
-
+                    </ul>
+                </li>
 
             </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </nav>
-
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
 
 
 </body>

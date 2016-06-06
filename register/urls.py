@@ -8,6 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^$', UserRegistrationView.as_view(), name='register_user'),
-    url(r'^user/success/', TemplateView.as_view(template_name='register_user1.html'),
-        name='user_registration_success'),
+    url(r'user/success/', TemplateView.as_view(template_name='success.html'),
+        name='page'),
  ]
